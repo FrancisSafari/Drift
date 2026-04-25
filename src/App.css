@@ -1,0 +1,98 @@
+*{
+  margin: 0;
+  /* padding: 0; */
+  /* box-sizing: border-box; */
+}
+
+.app-layout {
+  display: flex;
+  
+
+}
+
+.side-bar {
+  background-color: #1a1a1a;
+  min-height: 100vh;
+  width: 287px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.nav{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+h2{
+  color: whitesmoke;
+}
+
+.header{
+  background-color: blueviolet;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr)
+}
+
+.main-content {
+  background-color: aqua;
+  flex: 1;
+  min-height: 100vh;
+  padding: 48px;
+}
+
+.the-move{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+
+}
+
+.trending{
+  background-color: pink;
+  height: 480px;
+  width: 896px;
+  border-radius: 3%;
+}
+
+.trending-content{
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  background-color: aliceblue;
+  height: 408px;
+  width: 666px;
+  
+}
+
+.trending-details{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.small-card{
+  background-color: bisque;
+  display: grid;
+}
+
+.small-card-content{
+  margin: 4%;
+}
+
+.homepage-section{
+  background-color: blue;
+}
+
+.carrousel{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  height: 496px;
+}
+
+.mini-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

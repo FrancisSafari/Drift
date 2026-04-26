@@ -1,18 +1,20 @@
 
-function SmallCard({price, type, title, description, distance, duration}) {
+function SmallCard({price, type, title, description, distance, duration, rating, image}) {
     return(
         <div className="small-card">
-            <div className="images">
-                Images go here
+            <div className="images" style={{backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                <div className="rating">
+                    <p>{rating}</p>
+                </div>
             </div>
 
             <div className="small-card-content">
-                <div>
+                <div className="small-details">
                     <h5 className="type">{type}</h5>
                     <h5 className="price">{price}</h5>
                 </div>
                 
-                <div>
+                <div className="small-descriptions">
                     <h3 className="title">{title}</h3>
                     <p className="description">{description}</p>
                 </div>

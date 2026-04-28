@@ -1,3 +1,5 @@
+
+
 *{
   margin: 0;
   padding: 0;
@@ -41,8 +43,14 @@ span{
 .app-layout {
   display: flex;
   flex-direction: row;
+  max-width: 1600px;
+  margin: 0 auto;
  
  
+}
+
+.moods, .see-details, .check-in, .view-all, .pick-vibe, .notification, .logo-container {
+  cursor: pointer;
 }
 /* SIDE BAR SECTION */
 .side-bar {
@@ -159,6 +167,9 @@ span{
   background-color: #0F0F0F;
   padding: 20px;
   min-height: 1230px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
  
 .main-content {
@@ -191,6 +202,25 @@ span{
   gap: 20px;
 }
 
+.moods.active {
+  background-color: #F56E3D;
+  color: white;
+  border: 1px solid  #F56E3D;
+}
+
+.moods:hover{
+  background-color: #F56E3D;
+  color: white;
+}
+
+.see-details:hover{
+  background-color: #f45217;
+  color: white;
+}
+ .check-in:hover{
+  background-color: #f45217;
+  color: white;
+ }
 .moods{
   color: #888888;
   width: 142px;
@@ -335,7 +365,6 @@ span{
 /* FREE AND NEARBY */
 
 .small-card{
-  background-color: bisque;
   display: flex;
   flex-direction: column;
   height: 500px;
@@ -351,6 +380,11 @@ span{
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+  /* display: flex;
+  flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse; */
+
+
 }
 
 .small-card-content{
@@ -419,4 +453,59 @@ gap: 16px;
   font-size: 14px;
   background-color: transparent;
   border: none;
+}
+
+.rating {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color:  rgba(0, 0, 0, 0.6);
+  height: 27px;
+  /* width: 56px; */
+  padding: 0 10px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+}
+
+.rating p{
+  color: white;
+  font-size: 12px;
+}
+
+
+
+
+
+/* TABLET — 769px to 1279px */
+@media screen and (max-width: 1279px) {
+    .mood-buttons { grid-template-columns: repeat(3, 1fr); }
+    .moods { width: 100%; }
+    .carrousel { grid-template-columns: repeat(2, 1fr); }
+    .trending-content { width: 90%; }
+}
+
+/* LARGER PHONES & TABLETS PORTRAIT — 481px to 768px */
+@media screen and (max-width: 768px) {
+    .side-bar { display: none; }
+    .mood-buttons { grid-template-columns: repeat(2, 1fr); }
+    .carrousel { grid-template-columns: 1fr; }
+    .carrousel { height: auto; }
+    .trending-content { width: 100%; padding: 24px; }
+    .trending-header-label { font-size: 32px; }
+    .header { grid-template-columns: 1fr auto auto; padding: 15px; gap: 10px; }
+    .content { padding: 16px; }
+}
+
+/* SMALL PHONES — 0 to 480px */
+@media screen and (max-width: 480px) {
+    .mood-buttons { grid-template-columns: 1fr; }
+    .trending { height: 380px; }
+    .trending-header-label { font-size: 24px; }
+    .trending-content { padding: 20px; height: 340px; }
+    .small-card { height: 380px; }
+    .content { padding: 12px; gap: 30px; }
+    .check-in { width: 80px; }
 }

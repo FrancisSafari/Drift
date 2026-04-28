@@ -1,11 +1,23 @@
 import { Link } from "react-router-dom"
+import { useState } from 'react';
 import SmallCard from "../components/SmallCard.jsx"
 import SideBar from "../components/SideBar.jsx"
 import Header from "../components/Header.jsx"
 import { Wind, Zap, Brain, Coffee, Compass , Clock4Icon, MapPin , CircleDollarSign, Wand2 } from 'lucide-react'
 
 
+
+
 function HomePage(){
+    const [selectedMood, setSelectedMood] = useState(null)
+    const moods = [
+        { name: 'Calm', icon: <Wind size={16} /> },
+        { name: 'Energetic', icon: <Zap size={16} /> },
+        { name: 'Reflective', icon: <Brain size={16} /> },
+        { name: 'Cozy', icon: <Coffee size={16} /> },
+        { name: 'Adventurous', icon: <Compass size={16} /> },
+    ]
+    
     return(
         <div className="app-layout">
             {/* This is the sidebar */}
@@ -28,12 +40,18 @@ function HomePage(){
                                 <p>pick a vibe</p>
                             </button>
                         </div>
+                       
+
                         <div className="mood-buttons">
-                            <button className="moods"><Wind size={16} /> Calm</button>
-                            <button className="moods"><Zap size={16} /> Energetic</button>
-                            <button className="moods"><Brain size={16} /> Reflective</button>
-                            <button className="moods"><Coffee size={16} /> Cozy</button>
-                            <button className="moods"><Compass size={16} /> Adventurous</button>
+                            {moods.map(mood => (
+                                <button
+                                key = {mood.name}
+                                className={selectedMood === mood.name ? 'moods active' : 'moods'}
+                                onClick={()=>setSelectedMood (mood.name)}
+                                >
+                                {mood.icon} {mood.name}
+                                </button>
+                           ))}
                         </div>
                         
                         <div className="describe"> 

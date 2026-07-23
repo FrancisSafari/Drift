@@ -116,8 +116,9 @@ function HomePage(){
                         </div>
                         <div className="carrousel">
                             {filteredActivities.map(activity => (
-                                <SmallCard
-                                    key={activity.id}
+                                
+                                <Link key={activity.id} to={`/activity/${activity.id}`} className="card-link">
+                                    <SmallCard
                                     price={activity.price}
                                     type={activity.type}
                                     title={activity.title}
@@ -127,6 +128,8 @@ function HomePage(){
                                     rating={activity.rating}
                                     image={activity.image}
                                 />
+                                </Link>
+                                
                             ))}
                         </div>
 

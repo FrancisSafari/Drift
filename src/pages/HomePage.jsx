@@ -3,20 +3,29 @@ import { useState } from 'react';
 import SmallCard from "../components/SmallCard.jsx"
 import SideBar from "../components/SideBar.jsx"
 import Header from "../components/Header.jsx"
-import { Wind, Zap, Brain, Coffee, Compass , Clock4Icon, MapPin , CircleDollarSign, Wand2 } from 'lucide-react'
-
+import { Wind, Zap, Brain, Coffee, Compass , Clock4Icon, Users, Palette,  MapPin , CircleDollarSign, Wand2 } from 'lucide-react'
+import { activities, moods } from "../data/activities.js";
 
 
 
 function HomePage(){
     const [selectedMood, setSelectedMood] = useState(null)
-    const moods = [
-        { name: 'Calm', icon: <Wind size={16} /> },
-        { name: 'Energetic', icon: <Zap size={16} /> },
-        { name: 'Reflective', icon: <Brain size={16} /> },
-        { name: 'Cozy', icon: <Coffee size={16} /> },
-        { name: 'Adventurous', icon: <Compass size={16} /> },
-    ]
+    const [aiInput, setAiInput] = useState ('')
+    const moodIcons = {
+        energetic: <Zap size={16} />,
+        chill: <Wind size={16} />,
+        social: <Users size={16} />,
+        adventurous: <Compass size={16} />,
+        creative: <Palette size={16} />,
+        cozy: <Coffee size={16} />,
+    }
+
+    const filteredActivities = selectedMood
+        ? activities.filter(activity => activity.moods.includes(selectedMood))
+        : activities
+
+    console.log(aiInput)
+
     
     return(
         <div className="app-layout">
@@ -45,11 +54,11 @@ function HomePage(){
                         <div className="mood-buttons">
                             {moods.map(mood => (
                                 <button
-                                key = {mood.name}
-                                className={selectedMood === mood.name ? 'moods active' : 'moods'}
-                                onClick={()=>setSelectedMood (mood.name)}
+                                key = {mood}
+                                className={selectedMood === mood ? 'moods active' : 'moods'}
+                                onClick={()=>setSelectedMood ( selectedMood === mood ? null : mood)}
                                 >
-                                {mood.icon} {mood.name}
+                                {moodIcons[mood]} {mood}
                                 </button>
                            ))}
                         </div>
@@ -59,6 +68,8 @@ function HomePage(){
                             <input
                                 className="ai-input"
                                 placeholder="Describe your mood with AI..."
+                                value={aiInput}
+                                onChange = {(e) => setAiInput(e.target.value)}
                             />
                             <Wand2 className="ai-icon" size={20} />
                         </div>
@@ -104,12 +115,19 @@ function HomePage(){
                             <button className="view-all">View all {'>'}</button>
                         </div>
                         <div className="carrousel">
-                            <SmallCard price= "Free" type="OUTDOOR" title="The Hidden Bookmark" description="Best trail for clearing your
-head and finding peace in the" distance="2.1km away" duration=" 1 - 1.5 hours" rating="⭐4.9" image='/src/assets/Warm-library.png'></SmallCard>
-                            <SmallCard price= "Free" type="URBAN" title="Mirror Mist Rooftop" description="Open courts, no wait right now.
-Perfect for reflective solo play." distance="4.3 km" duration="1 hr" rating="⭐4.7"  image='/src/assets/Rainy-neon-city.png'></SmallCard>
-                            <SmallCard price= "Free Today" type="ARTS" title="The Zen Loop Gallery" description="Free Wednesdays — actually
-worth going for the acoustic" distance="5-0 km away" duration=" 1-2 hrs" rating="⭐4.8"  image='/src/assets/Zen-gallery.png'></SmallCard>
+                            {filteredActivities.map(activity => (
+                                <SmallCard
+                                    key={activity.id}
+                                    price={activity.price}
+                                    type={activity.type}
+                                    title={activity.title}
+                                    description={activity.description}
+                                    distance={activity.distance}
+                                    duration={activity.duration}
+                                    rating={activity.rating}
+                                    image={activity.image}
+                                />
+                            ))}
                         </div>
 
                     </div>
@@ -124,5 +142,4 @@ worth going for the acoustic" distance="5-0 km away" duration=" 1-2 hrs" rating=
         
     )
 }
-
 export default HomePage
